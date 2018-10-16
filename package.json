@@ -1,0 +1,22 @@
+{
+  "name": "moonsim",
+  "version": "1.0.0",
+  "description": "Realtime moon phases simulation with THREE.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maciejewiczow/moonsim.git"
+  },
+  "keywords": [
+    "moon"
+  ],
+  "author": "Maciej Adamus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maciejewiczow/moonsim/issues"
+  },
+  "homepage": "https://github.com/maciejewiczow/moonsim#readme"
+}
