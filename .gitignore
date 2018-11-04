@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# psd versions of used objects, as they are huge af
+*.psd
