@@ -61,4 +61,4 @@ typings/
 .next
 
 # psd versions of used objects, as they are huge af
-*.psd
+**/*.psd
