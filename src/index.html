@@ -45,29 +45,32 @@
             document.body.appendChild(WEBGL.getWebGLErrorMessage());
         }
         var container, stats, clock;
-        var camera, scene, renderer, elf;
+        var camera, scene, renderer, elf, directionalLight, distance = 3;
         init();
         animate();
         function init() {
             container = document.getElementById('container');
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
-            camera.position.set(8, 10, 8);
-            camera.lookAt(0, 3, 0);
+            camera.position.set(0, 0, 0.8);
             scene = new THREE.Scene();
             clock = new THREE.Clock();
             // loading manager
             var loadingManager = new THREE.LoadingManager(function () {
+                camera.lookAt(elf.position)
                 scene.add(elf);
             });
             // collada
             var loader = new THREE.ColladaLoader(loadingManager);
             loader.load('./objects/moon/moon.dae', function (collada) {
                 elf = collada.scene;
+                camera.lookAt(elf.position);
+                directionalLight.target = elf
             });
 
-            var directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(-1, 1, 0.5).normalize();
+            directionalLight = new THREE.DirectionalLight(0xffffff, 1.1);
+            directionalLight.position.set(0, 0.2, 1);
             scene.add(directionalLight);
+            scene.add(directionalLight.target)
             //
             renderer = new THREE.WebGLRenderer();
             renderer.setPixelRatio(window.devicePixelRatio);
@@ -90,9 +93,12 @@
             stats.update();
         }
         function render() {
-            var delta = clock.getDelta();
-            if (elf !== undefined) {
-                elf.rotation.z += delta * 0.1;
+            const t = clock.getElapsedTime();
+            const orbitSpeed = 0.3
+
+            if (directionalLight !== undefined && elf !== undefined/*  && 1 == 0 */) {
+                directionalLight.position.z = distance * Math.sin(t * orbitSpeed)
+                directionalLight.position.x = distance * Math.cos(t * orbitSpeed)
             }
             renderer.render(scene, camera);
         }
