@@ -56,13 +56,15 @@
             clock = new THREE.Clock();
             // loading manager
             var loadingManager = new THREE.LoadingManager(function () {
-                camera.lookAt(elf.position)
+                elf.position.set(0, 0, 0)
                 scene.add(elf);
+                console.log(scene)
             });
             // collada
             var loader = new THREE.ColladaLoader(loadingManager);
             loader.load('./objects/moon/moon.dae', function (collada) {
                 elf = collada.scene;
+                elf.children = elf.children.filter(x => x instanceof THREE.Mesh)
                 camera.lookAt(elf.position);
                 directionalLight.target = elf
             });
