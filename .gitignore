@@ -65,3 +65,5 @@ dist/
 
 # automatic system file
 Thumbs.db
+
+*.zip

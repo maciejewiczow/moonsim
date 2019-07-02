@@ -10,9 +10,7 @@ import App from './app'
 
 const middleware: any[] = [thunk]
 
-if (process.env.IS_DEV_ENV) {
-    middleware.push(createLogger({ duration: true }))
-}
+if (process.env.IS_DEV_ENV) middleware.push(createLogger({ duration: true }))
 
 const store = createStore(() => {}, applyMiddleware(...middleware))
 
