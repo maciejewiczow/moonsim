@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const dotenv = require('dotenv')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = () => {
     const env = dotenv.config().parsed
@@ -23,19 +24,29 @@ module.exports = () => {
                     exclude: /node_modules/
                 },
                 {
-                    test: /\.(jpg|png|gif|svg|tiff|woff|woff2|dae|html)/,
-                    use: ['file-loader']
+                    test: /\.html$/,
+                    use: [{ loader: 'html-loader', options: { minimize: true } }]
+                },
+                {
+                    test: /\.(jpg|png|gif|svg|tiff|woff|woff2|dae)$/,
+                    use: 'file-loader'
                 }
             ]
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
+            extensions: ['.tsx', '.ts', '.js', '*'],
             plugins: [new TsconfigPathsPlugin()]
         },
         output: {
             filename: 'bundle.js',
             path: path.resolve(__dirname, 'dist')
         },
-        plugins: [new webpack.DefinePlugin(envKeys)]
+        plugins: [
+            new webpack.DefinePlugin(envKeys),
+            new HtmlWebPackPlugin({
+                template: './src/index.html',
+                filename: './index.html'
+            })
+        ]
     }
 }

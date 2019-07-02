@@ -5,9 +5,11 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "build": "call \"node_modules/.bin/webpack.cmd\" --config webpack.config.js",
-        "build:watch": "start \"webpack\" npm run build -- --watch",
-        "build:prod": "npm run build -- --mode=production"
+        "start": "node server.js",
+        "restart": "webpack-dev-server --mode development",
+        "start:dev": "start \"Webpack\" webpack-dev-server --open --mode development",
+        "build:dev": "webpack --config webpack.config.js",
+        "build": "npm run build:dev -- --mode=production"
     },
     "repository": {
         "type": "git",
@@ -24,6 +26,7 @@
     "homepage": "https://github.com/maciejewiczow/moonsim#readme",
     "dependencies": {
         "bluebird": "^3.5.2",
+        "express": "^4.17.1",
         "react": "^16.6.0",
         "react-dom": "^16.6.0",
         "react-redux": "^5.1.1",
@@ -44,6 +47,9 @@
         "dotenv": "^6.1.0",
         "file-loader": "^2.0.0",
         "redux-logger": "^3.0.6",
+        "webpack-dev-server": "^3.7.2",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^3.2.0",
         "ts-loader": "^4.4.1",
         "tsconfig-paths-webpack-plugin": "^3.2.0",
         "typescript": "^2.9.2",
