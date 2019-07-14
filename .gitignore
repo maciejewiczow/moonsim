@@ -36,6 +36,9 @@ build/Release
 node_modules/
 jspm_packages/
 
+# TypeScript v1 declaration files
+typings/
+
 # Optional npm cache directory
 .npm
 
@@ -56,11 +59,3 @@ jspm_packages/
 
 # next.js build output
 .next
-
-# webpack output folder
-dist/
-
-# automatic system file
-Thumbs.db
-
-*.zip
