@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const dotenv = require('dotenv')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
 
 module.exports = () => {
     const env = dotenv.config().parsed
@@ -28,7 +29,7 @@ module.exports = () => {
                     use: [{ loader: 'html-loader', options: { minimize: true } }]
                 },
                 {
-                    test: /\.(jpg|png|gif|svg|tiff|woff|woff2|dae)$/,
+                    test: /\.(jpg|png|gif|svg|tiff|dae|ttf|woff|woff2)$/,
                     use: 'file-loader'
                 }
             ]
@@ -46,6 +47,9 @@ module.exports = () => {
             new HtmlWebPackPlugin({
                 template: './src/index.html',
                 filename: './index.html'
+            }),
+            new GoogleFontsPlugin({
+                fonts: [{ family: 'Raleway' }]
             })
         ]
     }
