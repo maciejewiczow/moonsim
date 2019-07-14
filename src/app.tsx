@@ -1,12 +1,45 @@
 import * as React from 'react'
-import { Component } from 'react'
+import { createGlobalStyle } from 'styled-components'
 
-export default class App extends Component<{}, {}> {
+import { MasterLayout, Background, MoonCanvas, MoonStatus, PhaseSlider, Settings } from 'components'
+
+const GlobalStyle = createGlobalStyle`
+    *,
+    *::after,
+    *::before {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body, #app {
+        height: 100%;
+        width: 100%;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background: black;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 100;
+    }
+`
+
+export default class App extends React.Component<{}, {}> {
     render() {
         return (
-            <div>
-                <h1>Ksienżyc tutaj bedzie</h1>
-            </div>
+            <>
+                <GlobalStyle />
+                <Background>
+                    <MoonCanvas />
+                </Background>
+                <MasterLayout>
+                    <MoonStatus />
+                    <PhaseSlider />
+                    <Settings />
+                </MasterLayout>
+            </>
         )
     }
 }
