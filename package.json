@@ -34,7 +34,7 @@
         "redux": "^4.0.1",
         "redux-thunk": "^2.3.0",
         "styled-components": "^4.3.2",
-        "three": "^0.98.0"
+        "three": "^0.137.0"
     },
     "devDependencies": {
         "@types/bluebird": "^3.5.27",
