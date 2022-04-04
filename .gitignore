@@ -64,3 +64,5 @@ dist/
 Thumbs.db
 
 *.zip
+
+*.glb
