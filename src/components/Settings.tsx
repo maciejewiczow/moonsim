@@ -1,20 +1,13 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
+import * as React from 'react';
+import styled from 'styled-components';
 
 const Container = styled.div`
     grid-area: settings;
-`
+`;
 
-const SettingsComponent = (props: any) => (
-    <Container>
-        <h2>Settings</h2>
-        <ul>
-            <li>Jeden setting</li>
-            <li>Drugi setting</li>
-        </ul>
-    </Container>
-)
+const SettingsComponent: React.FC = () => (
+    <Container />
+);
 
 // TODO: connect to store here
-export const Settings = SettingsComponent
+export const Settings = SettingsComponent;
