@@ -1,7 +1,12 @@
-import * as React from 'react'
-import { createGlobalStyle } from 'styled-components'
-
-import { MasterLayout, Background, MoonCanvas, MoonStatus, PhaseSlider, Settings } from 'components'
+import * as React from 'react';
+import { createGlobalStyle } from 'styled-components';
+import {
+    MasterLayout,
+    MoonCanvas,
+    MoonStatus,
+    PhaseSlider,
+    Settings,
+} from 'components';
 
 const GlobalStyle = createGlobalStyle`
     *,
@@ -25,20 +30,18 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export default class App extends React.Component<{}, {}> {
-    render() {
-        return (
-            <>
-                <GlobalStyle />
-                <Background>
-                    <MoonCanvas />
-                </Background>
-                <MasterLayout>
-                    <MoonStatus />
-                    <PhaseSlider />
-                    <Settings />
-                </MasterLayout>
-            </>
-        )
-    }
-}
+const App: React.FC = () => (
+    <React.Fragment>
+        <GlobalStyle />
+        <React.Suspense fallback="Loading...">
+            <MoonCanvas />
+            <MasterLayout>
+                <MoonStatus />
+                <PhaseSlider />
+                <Settings />
+            </MasterLayout>
+        </React.Suspense>
+    </React.Fragment>
+);
+
+export default App;
