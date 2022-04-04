@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const dotenv = require('dotenv')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
-const GoogleFontsPlugin = require('google-fonts-webpack-plugin')
+const GoogleFontsPlugin = require('@beyonk/google-fonts-webpack-plugin')
 
 module.exports = () => {
     const env = dotenv.config().parsed
@@ -20,22 +20,22 @@ module.exports = () => {
         module: {
             rules: [
                 {
-                    test: /\.tsx|ts?$/,
+                    test: /\.tsx?$/,
                     use: 'ts-loader',
-                    exclude: /node_modules/
+                    exclude: /node_modules/,
                 },
                 {
                     test: /\.html$/,
                     use: [{ loader: 'html-loader', options: { minimize: true } }]
                 },
                 {
-                    test: /\.(jpg|png|gif|svg|tiff|dae|ttf|woff|woff2)$/,
+                    test: /\.(jpg|png|gif|svg|tiff|dae|ttf|woff|woff2|glb)$/,
                     use: 'file-loader'
                 }
             ]
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.js', '*'],
+            extensions: ['.tsx', '.ts', '.js', '.d.ts', '.*'],
             plugins: [new TsconfigPathsPlugin()]
         },
         output: {
@@ -49,7 +49,7 @@ module.exports = () => {
                 filename: './index.html'
             }),
             new GoogleFontsPlugin({
-                fonts: [{ family: 'Raleway' }]
+                fonts: [{ family: 'Roboto' }]
             })
         ]
     }
