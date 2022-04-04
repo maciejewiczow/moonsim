@@ -29,7 +29,7 @@ module.exports = () => {
                     use: [{ loader: 'html-loader', options: { minimize: true } }]
                 },
                 {
-                    test: /\.(jpg|png|gif|svg|tiff|dae|ttf|woff|woff2)$/,
+                    test: /\.(jpg|png|gif|svg|tiff|dae|ttf|woff|woff2|glb)$/,
                     use: 'file-loader'
                 }
             ]
@@ -49,7 +49,7 @@ module.exports = () => {
                 filename: './index.html'
             }),
             new GoogleFontsPlugin({
-                fonts: [{ family: 'Raleway' }]
+                fonts: [{ family: 'Roboto' }]
             })
         ]
     }

@@ -20,11 +20,10 @@ const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         color: white;
-        background: black;
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: 100;
     }
-`
+`;
 
 export default class App extends React.Component<{}, {}> {
     render() {
