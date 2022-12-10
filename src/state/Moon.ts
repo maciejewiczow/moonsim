@@ -1,15 +1,44 @@
-import { action, makeObservable, observable } from 'mobx';
+import { moonAnglesAndRelativeSize } from 'algorithm/moonAnglesAndRelativeSize';
+import dayjs, { Dayjs } from 'dayjs';
+import { makeAutoObservable } from 'mobx';
 
 class Moon {
-    @observable
-    angle = Math.PI;
+    minDate = dayjs().subtract(1, 'month');
+    maxDate = dayjs().add(1, 'month');
+    date = dayjs();
+    isAutoUpdating = true;
 
     constructor() {
-        makeObservable(this);
+        makeAutoObservable(this);
+        setInterval(() => {
+            if (this.isAutoUpdating)
+                this.setDateToCurrent();
+        }, 1000 * 60);
     }
 
-    @action
-    setAngle = (a: number) => { this.angle = a; };
+    setIsAutoUpdating(val: boolean) {
+        this.isAutoUpdating = val;
+    }
+
+    setDateToCurrent() {
+        this.date = dayjs();
+    }
+
+    setMinDate(d: Dayjs) {
+        this.minDate = d;
+    }
+
+    setMaxDate(d: Dayjs) {
+        this.maxDate = d;
+    }
+
+    setDate(d: Dayjs) {
+        this.date = d;
+    }
+
+    get properties() {
+        return moonAnglesAndRelativeSize(this.date);
+    }
 }
 
 export const moon = new Moon();

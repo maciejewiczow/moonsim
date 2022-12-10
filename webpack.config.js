@@ -49,7 +49,8 @@ module.exports = () => {
                 filename: './index.html'
             }),
             new GoogleFontsPlugin({
-                fonts: [{ family: 'Roboto' }]
+                fonts: [{ family: 'Roboto' }],
+                apiUrl: 'https://gwfh.mranftl.com/api/fonts'
             })
         ]
     }
